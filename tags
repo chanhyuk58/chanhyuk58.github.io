@@ -4150,7 +4150,7 @@ ghostwhite	assets/js/distillpub/template.v2.js	/^    ghostwhite: 0xf8f8ff,$/;"	p
 giscus	_site/assets/js/theme.js	/^    iframe.contentWindow.postMessage({ giscus: message }, 'https:\/\/giscus.app');$/;"	p	class:AnonymousClass1fe56c940201
 giscus	assets/js/theme.js	/^    iframe.contentWindow.postMessage({ giscus: message }, 'https:\/\/giscus.app');$/;"	p	class:AnonymousClassa4706df10201
 giscus_thread	_includes/giscus.html	/^<div id="giscus_thread" style="max-width: {{ site.max_width }}; margin: 0 auto;">$/;"	I
-giscus_thread	_site/blog/2021/distill/index.html	/^      <d-bibliography src="\/al-folio\/assets\/bibliography\/2018-12-22-distill.bib"><\/d-biblio/;"	I
+giscus_thread	_site/blog/2021/distill/index.html	/^      <d-bibliography src="\/assets\/bibliography\/2018-12-22-distill.bib"><\/d-bibliography><di/;"	I
 giscus_thread	_site/blog/2022/giscus-comments/index.html	/^  <\/article><div id="giscus_thread" style="max-width: 800px; margin: 0 auto;">$/;"	I
 github-repositories	_site/repositories/index.html	/^<h2 id="github-repositories">GitHub Repositories<\/h2>$/;"	I
 github-users	_site/repositories/index.html	/^            <h2 id="github-users">GitHub users<\/h2>$/;"	I
