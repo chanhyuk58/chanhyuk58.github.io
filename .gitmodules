@@ -5,3 +5,6 @@
 	path = public
 	url = https://github.com/chanhyuk58/chanhyuk58.github.io.git
 	branch = publish
+[submodule "themes/academic"]
+	path = themes/academic
+	url = https://github.com/HugoBlox/hugo-blox-builder
