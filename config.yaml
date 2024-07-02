@@ -14,12 +14,11 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: 
-  description: "PhD Student, Political Science"
-  keywords: [Blog, Portfolio]
+  title: Chanhyuk Park
+  description: "Hello! I am Chanhyuk Park, a PhD Student in Political Science at Washington University in St. Louis. I study methodology and political economy."
+  keywords: [Poltiical Science, Methodology, Comparative, International, chanhyukpark, Chanhyuk Park, Chanhyuk, Grad, graduate school, grad school, phd]
   author: Chanhyuk Park
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
