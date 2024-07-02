@@ -115,10 +115,10 @@ menu:
       name: Curriculum Vitae
       url: /cv_chanhyuk.pdf
       weight: 20
-    - identifier: Blog
-      name: Blog
-      url: /blog/
-      weight: 30
+    # - identifier: Blog
+    #   name: Blog
+    #   url: /blog/
+    #   weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
