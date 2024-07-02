@@ -25,7 +25,7 @@ params:
   disableThemeToggle: false
 
   ShowReadingTime: false
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: false
@@ -113,7 +113,7 @@ menu:
     #   weight: 10
     - identifier: CV
       name: Curriculum Vitae
-      url: /cv/CV_chanhyuk.pdf
+      url: /cv_chanhyuk.pdf
       weight: 20
     - identifier: Blog
       name: Blog
