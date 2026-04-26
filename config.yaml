@@ -112,7 +112,7 @@ menu:
     #   weight: 10
     - identifier: CV
       name: Curriculum Vitae
-      url: https://github.com/chanhyuk58/cv/blob/00518750cf42cec8b8480d5399096eeb1b898f7c/CV_chanhyuk.pdf
+      url: https://raw.githubusercontent.com/chanhyuk58/cv/main/CV_chanhyuk.pdf
       weight: 2
     # - identifier: Blog
     #   name: Blog
