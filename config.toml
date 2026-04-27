@@ -36,7 +36,7 @@ url = "/cv"
 weight = 1
 
 
-[[extra.menu]]
+# [[extra.menu]]
 # name = "Publications"
 # url = "/publications/"
 # weight = 1
