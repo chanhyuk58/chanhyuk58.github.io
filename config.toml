@@ -3,6 +3,7 @@ base_url = "chanhyukpark.com"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
+sass_compression = "minify"
 
 # The site title and description; they are used in feeds by default.
 title = "Chanhyuk Park"
