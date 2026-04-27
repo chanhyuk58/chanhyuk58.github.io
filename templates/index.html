@@ -24,7 +24,7 @@
                 
                 <!-- Social links moved right below the role/org -->
                 {% if social_data.social %}
-                <div class="social-links" style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="social-links" style="margin-top: 15px; margin-bottom: 10px;">
                     {% for social in social_data.social %}
                     <a href="{{ social.url }}" target="_blank" aria-label="{{ social.name }}" style="margin-right: 10px; font-size: 1.2em;">
                         <i class="{{ social.icon }}"></i>
@@ -37,8 +37,7 @@
     </div>
 </div>
 
-<!-- About Me and CV moved outside hero-content -->
-<div class="container" style="margin-top: 40px;">
+<div class="container" style="margin-top: 5px;">
     {% if config.extra.bio %}
     <div class="bio-section-full">
         <h3>About Me</h3>
