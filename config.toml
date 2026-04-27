@@ -1,0 +1,63 @@
+# The URL the site will be built for
+base_url = "chanhyukpark.com"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# The site title and description; they are used in feeds by default.
+title = "Chanhyuk Park"
+# description = "Professional Portfolio"
+
+[extra]
+# Put all your custom variables here
+# The URL of the CV, which can be downloaded from the landing page
+# cv_url = ""
+# Personal information
+name = "Chanhyuk Park"
+role = "PhD Student"
+organization = "Washington University in St Louis"
+# location = "Kier, PE"
+
+# Bio/about section, this is prominently displayed on the landing page
+bio = """
+I study methodology, recently focusing on coupling **machine learning (specifically flow models)** with statistical methods, partial identification, and causal inference. Substantively, I am interested in the impact of technology in politics.
+"""
+
+[extra.social_data]
+social = [
+    { name = "GitHub", url = "https://github.com/chanhyuk58", icon = "fab fa-github" },
+    { name = "Email", url = "mailto:chanhyuk@wustl.edu", icon = "fas fa-envelope" }
+]
+
+# navbar items
+[[extra.menu]]
+name = "CV"
+url = "/cv"
+weight = 1
+
+
+[[extra.menu]]
+# name = "Publications"
+# url = "/publications/"
+# weight = 1
+#
+# [[extra.menu]]
+# name = "Conferences & Talks"
+# url = "/conferences/"
+# weight = 2
+#
+# [[extra.menu]]
+# name = "Experience"
+# url = "/experience/"
+# weight = 3
+
+# Color theme configuration
+[extra.colors]
+primary_color = "#39444C"         
+secondary_color = "#C8102E"       
+accent_color = "#98A6AD"         
+text_color = "#2C2F33"           
+background_color = "#F8F9FA"      
+card_background = "#FFFFFF"      
+border_color = "#D0D3D4"        
+light_background = "#EDF0F2"      
