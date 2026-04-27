@@ -1,27 +1,79 @@
-// --- VARIABLES ---
+// --- VARIABLES & ROOT ---
 :root {
+  // Shadow and Depth
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+  // Typography
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --heading-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  // Layout Constants
   --max-width: 1100px;
   --sidebar-width: 260px;
-  --radius: 58px; // Apple-style radius for 260px
+  --radius: 58px; // The "Apple iPhone" look for 260px width
 }
 
-// --- BASE STYLES ---
-* { margin: 0; padding: 0; box-sizing: border-box; }
+// Dark Mode Support
+.dark-mode {
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+// --- RESET & BASE ---
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--font-family);
   color: var(--text-color);
   background-color: var(--background-color);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// --- 4-CELL LAYOUT LOGIC ---
+// --- NAVIGATION ---
+.navbar {
+  background-color: var(--card-background);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: flex-end; // Menu to the right
+  align-items: center;
+  height: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+  &:hover { color: var(--primary-color); }
+}
+
+// --- MAIN 4-CELL LAYOUT ---
 .hero-layout {
   display: flex;
-  gap: 4rem; // Horizontal gap between column 1 and 2
+  gap: 4rem; // Space between Column 1 and Column 2
   padding: 4rem 0;
   align-items: flex-start;
 
@@ -33,14 +85,15 @@ body {
   }
 }
 
-// LEFT COLUMN (Cell 1 & 2)
+// COLUMN 1 (Sidebar - 260px)
 .column-left {
   flex: 0 0 var(--sidebar-width);
   display: flex;
   flex-direction: column;
-  gap: 2.5rem; // Vertical gap between Pic and Links
+  gap: 2.5rem; // Space between Cell 1 and Cell 2
 }
 
+// CELL 1: Profile Pic
 .avatar-apple {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
@@ -49,48 +102,85 @@ body {
   box-shadow: var(--shadow);
 }
 
+// CELL 2: Links & Social
 .cell-links {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+}
 
-  .cv-download { width: 100%; }
+.cv-download {
+  width: 100%;
 }
 
 .social-links-sidebar {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
+  
   a {
     color: var(--text-color);
     font-size: 1.6rem;
-    &:hover { color: var(--primary-color); transform: scale(1.1); }
+    transition: color 0.2s, transform 0.2s;
+    &:hover {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
   }
 }
 
-// RIGHT COLUMN (Cell 3 & 4)
+// COLUMN 2 (Content - Flexible)
 .column-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem; // Vertical gap between Bio and Interests/Edu
+  gap: 3.5rem; // Space between Cell 3 and Cell 4
 }
 
+// CELL 3: Bio Section
 .cell-bio {
-  .name { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; }
-  .role { font-size: 1.5rem; color: var(--secondary-color); font-weight: 500; }
-  .institute { font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.8; }
-  .bio-text { text-align: justify; font-size: 1.05rem; }
+  .name {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  
+  .role {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+    margin-bottom: 0.2rem;
+  }
+  
+  .institute {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  .bio-text {
+    text-align: justify;
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+  }
 }
 
-// Cell 4 Grid
+// CELL 4: Info Grid (Interests & Education)
 .info-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   
-  @media (max-width: 600px) { grid-template-columns: 1fr; }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .info-block {
@@ -99,18 +189,33 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1rem;
+    color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
-    display: block; // Ensures it takes full width of the cell
-    width: 100%;
+    padding-bottom: 4px;
+    display: block;
   }
 }
 
-// --- COMPONENT STYLES ---
+// --- COMPONENTS ---
 .clean-list {
   list-style: none;
-  li { margin-bottom: 0.8rem; font-size: 0.95rem; }
-  .degree { font-weight: 600; }
-  .inst-sub { font-size: 0.85rem; color: var(--accent-color); }
+  
+  li {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    
+    strong {
+      color: var(--text-color);
+    }
+  }
+}
+
+.inst-sub {
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  display: block;
+  margin-top: 2px;
 }
 
 .btn-primary {
@@ -124,13 +229,34 @@ body {
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  &:hover { background-color: var(--accent-color); transform: translateY(-2px); }
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+  }
 }
 
+// --- FOOTER ---
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  margin-top: 4rem;
+  
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+
+// --- UTILITIES ---
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 2rem;
 }
-
-// Navbar and Footer remain largely same as your provided version...
