@@ -1,20 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-{# Load data from separate TOML files #}
+{# Load data #}
 {% set education_data = load_data(path="data/education.toml") %}
 {% set social_data = load_data(path="data/social.toml") %}
 {% set interests_data = load_data(path="data/interests.toml") %}
 
 <div class="hero-section">
     <div class="container">
-        <div class="hero-content">
-            <!-- Avatar section -->
-            <div class="avatar-section">
-                <img src="/profile_cropped.png" alt="{{ config.extra.name }}" class="avatar">
+        <div class="hero-layout">
+            <!-- LEFT SIDEBAR: Avatar, CV, Links -->
+            <div class="profile-sidebar">
+                <div class="avatar-section">
+                    <img src="/profile_cropped.png" alt="{{ config.extra.name }}" class="avatar-squared">
+                </div>
+                
+                <div class="cv-download">
+                    <a href="{{ config.extra.cv_url }}" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download"></i> CV
+                    </a>
+                </div>
+
+                {% if social_data.social %}
+                <div class="social-links-stacked">
+                    {% for social in social_data.social %}
+                    <a href="{{ social.url }}" target="_blank" aria-label="{{ social.name }}">
+                        <i class="{{ social.icon }}"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
             
-            <!-- Bio section (Name and Role only) -->
+            <!-- RIGHT CONTENT: Name, Role, About, Info Grid -->
             <div class="bio-section">
                 <h1 class="name">{{ config.extra.name | default(value=config.title) }}</h1>
                 <h2 class="role">{{ config.extra.role }}</h2>
@@ -22,62 +40,44 @@
                 <p class="organization">{{ config.extra.organization }}</p>
                 {% endif %}
                 
-                <!-- Social links moved right below the role/org -->
-                {% if social_data.social %}
-                <div class="social-links" style="margin-top: 15px; margin-bottom: 10px;">
-                    {% for social in social_data.social %}
-                    <a href="{{ social.url }}" target="_blank" aria-label="{{ social.name }}" style="margin-right: 10px; font-size: 1.2em;">
-                        <i class="{{ social.icon }}"></i>
-                    </a>
-                    {% endfor %}
+                {% if config.extra.bio %}
+                <div class="bio">
+                    <h3>About Me</h3>
+                    <div>{{ config.extra.bio | markdown(inline=false) | safe }}</div>
                 </div>
                 {% endif %}
+                
+                <div class="info-grid">
+                    <!-- Interests -->
+                    {% if interests_data.interests %}
+                    <div class="info-box">
+                        <h3>Interests</h3>
+                        <ul class="interests-list">
+                            {% for interest in interests_data.interests %}
+                            <li>{{ interest }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Education -->
+                    {% if education_data.education %}
+                    <div class="info-box">
+                        <h3>Education</h3>
+                        <ul class="education-list">
+                            {% for edu in education_data.education %}
+                            <li class="education-item">
+                                <div class="education-content">
+                                    <div class="degree">{{ edu.degree }}</div>
+                                    <div class="institution">{{ edu.institution }}</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="container" style="margin-top: 5px;">
-    {% if config.extra.bio %}
-    <div class="bio-section-full">
-        <h3>About Me</h3>
-        <div>{{ config.extra.bio | markdown(inline=false) | safe }}</div>
-    </div>
-    {% endif %}
-    
-    <div class="cv-download" style="margin: 20px 0;">
-        <a href="{{ config.extra.cv_url }}" class="btn btn-primary" target="_blank">
-            <i class="fas fa-download"></i> Download CV
-        </a>
-    </div>
-
-    <!-- Interests and Education -->
-    <div class="info-content" style="margin-top: 30px;">
-        <div class="info-grid">
-            {% if interests_data.interests %}
-            <div class="info-box">
-                <h3>Interests</h3>
-                <ul class="interests-list">
-                    {% for interest in interests_data.interests %}
-                    <li>{{ interest }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-            
-            {% if education_data.education %}
-            <div class="info-box">
-                <h3>Education</h3>
-                <ul class="education-list">
-                    {% for edu in education_data.education %}
-                    <li class="education-item">
-                        <div class="degree">{{ edu.degree }}</div>
-                        <div class="institution">{{ edu.institution }}</div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
         </div>
     </div>
 </div>
