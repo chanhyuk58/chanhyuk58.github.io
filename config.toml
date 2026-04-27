@@ -20,7 +20,7 @@ organization = "Washington University in St Louis"
 
 # Bio/about section, this is prominently displayed on the landing page
 bio = """
-I study methodology, recently focusing on coupling **machine learning (specifically flow models)** with statistical methods, partial identification, and causal inference. Substantively, I am interested in the impact of technology in politics.
+I study methodology, recently focusing on coupling machine learning (specifically flow models) with statistical methods, partial identification, and causal inference. Substantively, I am interested in the impact of technology in politics.
 """
 
 # navbar items
