@@ -9,15 +9,15 @@
 <div class="container">
     <div class="hero-layout">
         
-        <!-- COLUMN 1: Fixed 260px -->
+        <!-- COLUMN 1 (Fixed 260px) -->
         <div class="column-left">
             <!-- CELL 1: Profile Pic -->
-            <div class="cell-profile-pic">
+            <div class="cell-pic">
                 <img src="/profile_cropped.png" alt="{{ config.extra.name }}" class="avatar-apple">
             </div>
 
             <!-- CELL 2: CV and Social -->
-            <div class="cell-sidebar-links">
+            <div class="cell-links">
                 <div class="cv-download">
                     <a href="/cv.pdf" class="btn btn-primary" target="_blank">
                         <i class="fas fa-file-pdf"></i> Download CV
@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <!-- COLUMN 2: Flexible -->
+        <!-- COLUMN 2 (Flexible) -->
         <div class="column-right">
             <!-- CELL 3: Name, Position, Institute, About Me -->
             <div class="cell-bio">
@@ -51,7 +51,7 @@
             </div>
 
             <!-- CELL 4: Interests and Education -->
-            <div class="cell-info-grid">
+            <div class="cell-info">
                 <div class="info-columns">
                     {% if interests_data.interests %}
                     <div class="info-block">
@@ -69,8 +69,8 @@
                         <h3>Education</h3>
                         <ul class="clean-list">
                             {% for edu in education_data.education %}
-                            <li>
-                                <strong>{{ edu.degree }}</strong><br>
+                            <li class="edu-item">
+                                <span class="degree">{{ edu.degree }}</span><br>
                                 <span class="inst-sub">{{ edu.institution }}</span>
                             </li>
                             {% endfor %}
