@@ -3,7 +3,6 @@ base_url = "chanhyukpark.com"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
-sass_compression = "minify"
 
 # The site title and description; they are used in feeds by default.
 title = "Chanhyuk Park"
@@ -23,12 +22,6 @@ organization = "Washington University in St Louis"
 bio = """
 I study methodology, recently focusing on coupling **machine learning (specifically flow models)** with statistical methods, partial identification, and causal inference. Substantively, I am interested in the impact of technology in politics.
 """
-
-[extra.social_data]
-social = [
-    { name = "GitHub", url = "https://github.com/chanhyuk58", icon = "fab fa-github" },
-    { name = "Email", url = "mailto:chanhyuk@wustl.edu", icon = "fas fa-envelope" }
-]
 
 # navbar items
 # [[extra.menu]]
