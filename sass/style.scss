@@ -1,237 +1,90 @@
-// --- VARIABLES & ROOT ---
 :root {
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --heading-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --max-width: 1100px;
-  --sidebar-width: 200px;
-  --radius: 20px; // Rounded corners for profile pic
-}
-
-.dark-mode {
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
-}
-
-// --- RESET & BASE ---
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-family);
-  color: var(--text-color);
-  background-color: var(--background-color);
-  line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-// --- TYPOGRAPHY ---
-h1, h2, h3, h4 {
-  font-family: var(--heading-font);
-  color: var(--text-color);
-  line-height: 1.2;
-}
-
-h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; }
-h2 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--secondary-color); }
-h3 { font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 2px solid var(--border-color); display: inline-block; padding-bottom: 2px; }
-
-p { margin-bottom: 1.2rem; }
-
-// --- NAVIGATION ---
-.navbar {
-  background-color: var(--card-background);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  height: 70px;
-}
-
-.nav-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: flex-end; // Align menu to right
-  align-items: center;
-  height: 100%;
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  align-items: center;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  &:hover { color: var(--primary-color); }
-}
-
-.dark-mode-toggle {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-// --- HERO / PROFILE LAYOUT ---
-.hero-section {
-  padding: 4rem 0;
+  --sidebar-width: 260px;
+  --apple-radius: 58px;
 }
 
 .hero-layout {
   display: flex;
-  gap: 4rem; // Space between sidebar and bio
+  gap: 4rem; // Space between Column 1 and Column 2
+  padding: 3rem 0;
   align-items: flex-start;
 
   @media (max-width: 850px) {
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 2rem;
+  }
+}
+
+// COLUMN 1
+.column-left {
+  flex: 0 0 var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; // Vertical space between Pic cell and Links cell
+}
+
+.avatar-apple {
+  width: var(--sidebar-width);
+  height: var(--sidebar-width);
+  object-fit: cover;
+  border-radius: var(--apple-radius);
+  box-shadow: var(--shadow);
+}
+
+.cell-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+
+  .cv-download, .btn {
+    width: 100%;
     text-align: center;
   }
 }
 
-// LEFT SIDEBAR
-.profile-sidebar {
-  flex: 0 0 var(--sidebar-width);
+.social-links-sidebar {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1.6rem;
+  a { color: var(--text-color); &:hover { color: var(--primary-color); } }
+}
+
+// COLUMN 2
+.column-right {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
+  gap: 3rem; // Vertical space between Bio cell and Info cell
 }
 
-.avatar-squared {
-  width: var(--sidebar-width);
-  height: var(--sidebar-width);
-  object-fit: cover;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
+.cell-bio {
+  .name { font-size: 3rem; margin-bottom: 0; }
+  .role { font-size: 1.4rem; color: var(--secondary-color); margin-bottom: 0; }
+  .institute { font-size: 1.2rem; font-weight: 500; margin-bottom: 1.5rem; }
+  .bio-text { line-height: 1.8; text-align: justify; }
 }
 
-// CV BUTTON
-.cv-download {
-  width: 100%;
-  .btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--hover-shadow);
-      background-color: var(--accent-color);
-    }
-  }
-}
-
-// SOCIAL LINKS STACKED
-.social-links-stacked {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
-  
-  a {
-    color: var(--text-color);
-    font-size: 1.6rem;
-    transition: color 0.2s, transform 0.2s;
-    
-    &:hover {
-      color: var(--primary-color);
-      transform: scale(1.1);
-    }
-  }
-}
-
-// RIGHT COLUMN (BIO)
-.bio-section {
-  flex: 1;
-  
-  .organization {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 2rem;
-  }
-
-  .bio {
-    margin-bottom: 2.5rem;
-    text-align: justify;
-    p { font-size: 1.05rem; line-height: 1.8; }
-  }
-}
-
-// --- INFO GRID (Interests & Education) ---
-.info-grid {
+// Cell 4: Grid within the flexible column
+.info-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+
+  h3 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
   }
 }
 
-.info-box {
-  background: var(--card-background);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow);
-
-  ul {
-    list-style: none;
-    li {
-      margin-bottom: 0.6rem;
-      font-size: 0.95rem;
-      position: relative;
-      padding-left: 1.2rem;
-      
-      &::before {
-        content: "•";
-        color: var(--secondary-color);
-        position: absolute;
-        left: 0;
-        font-weight: bold;
-      }
-    }
-  }
+.clean-list {
+  list-style: none;
+  li { margin-bottom: 0.8rem; font-size: 0.95rem; }
 }
 
-// --- FOOTER ---
-.footer {
-  padding: 3rem 0;
-  text-align: center;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.9rem;
-  color: var(--accent-color);
-  margin-top: 4rem;
-  
-  a { color: var(--primary-color); text-decoration: none; }
-}
-
-// --- UTILITIES ---
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+.inst-sub { font-size: 0.85rem; color: var(--accent-color); }

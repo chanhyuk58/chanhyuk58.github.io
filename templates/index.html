@@ -6,23 +6,25 @@
 {% set social_data = load_data(path="data/social.toml") %}
 {% set interests_data = load_data(path="data/interests.toml") %}
 
-<div class="hero-section">
-    <div class="container">
-        <div class="hero-layout">
-            <!-- LEFT SIDEBAR: Avatar, CV, Links -->
-            <div class="profile-sidebar">
-                <div class="avatar-section">
-                    <img src="/profile_cropped.png" alt="{{ config.extra.name }}" class="avatar-squared">
-                </div>
-                
+<div class="container">
+    <div class="hero-layout">
+        
+        <!-- COLUMN 1: Fixed 260px -->
+        <div class="column-left">
+            <!-- CELL 1: Profile Pic -->
+            <div class="cell-profile-pic">
+                <img src="/profile_cropped.png" alt="{{ config.extra.name }}" class="avatar-apple">
+            </div>
+
+            <!-- CELL 2: CV and Social -->
+            <div class="cell-sidebar-links">
                 <div class="cv-download">
-                    <a href="{{ config.extra.cv_url }}" class="btn btn-primary" target="_blank">
-                        <i class="fas fa-download"></i> CV
+                    <a href="/cv.pdf" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-file-pdf"></i> Download CV
                     </a>
                 </div>
-
                 {% if social_data.social %}
-                <div class="social-links-stacked">
+                <div class="social-links-sidebar">
                     {% for social in social_data.social %}
                     <a href="{{ social.url }}" target="_blank" aria-label="{{ social.name }}">
                         <i class="{{ social.icon }}"></i>
@@ -31,46 +33,45 @@
                 </div>
                 {% endif %}
             </div>
-            
-            <!-- RIGHT CONTENT: Name, Role, About, Info Grid -->
-            <div class="bio-section">
-                <h1 class="name">{{ config.extra.name | default(value=config.title) }}</h1>
+        </div>
+
+        <!-- COLUMN 2: Flexible -->
+        <div class="column-right">
+            <!-- CELL 3: Name, Position, Institute, About Me -->
+            <div class="cell-bio">
+                <h1 class="name">{{ config.extra.name }}</h1>
                 <h2 class="role">{{ config.extra.role }}</h2>
-                {% if config.extra.organization %}
-                <p class="organization">{{ config.extra.organization }}</p>
-                {% endif %}
+                <p class="institute">{{ config.extra.organization }}</p>
                 
                 {% if config.extra.bio %}
-                <div class="bio">
-                    <h3>About Me</h3>
-                    <div>{{ config.extra.bio | markdown(inline=false) | safe }}</div>
+                <div class="bio-text">
+                    {{ config.extra.bio | markdown(inline=false) | safe }}
                 </div>
                 {% endif %}
-                
-                <div class="info-grid">
-                    <!-- Interests -->
+            </div>
+
+            <!-- CELL 4: Interests and Education -->
+            <div class="cell-info-grid">
+                <div class="info-columns">
                     {% if interests_data.interests %}
-                    <div class="info-box">
+                    <div class="info-block">
                         <h3>Interests</h3>
-                        <ul class="interests-list">
+                        <ul class="clean-list">
                             {% for interest in interests_data.interests %}
                             <li>{{ interest }}</li>
                             {% endfor %}
                         </ul>
                     </div>
                     {% endif %}
-                    
-                    <!-- Education -->
+
                     {% if education_data.education %}
-                    <div class="info-box">
+                    <div class="info-block">
                         <h3>Education</h3>
-                        <ul class="education-list">
+                        <ul class="clean-list">
                             {% for edu in education_data.education %}
-                            <li class="education-item">
-                                <div class="education-content">
-                                    <div class="degree">{{ edu.degree }}</div>
-                                    <div class="institution">{{ edu.institution }}</div>
-                                </div>
+                            <li>
+                                <strong>{{ edu.degree }}</strong><br>
+                                <span class="inst-sub">{{ edu.institution }}</span>
                             </li>
                             {% endfor %}
                         </ul>
@@ -79,6 +80,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 {% endblock content %}
