@@ -36,6 +36,10 @@ body {
 }
 
 // --- NAVIGATION ---
+header, .header {
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
 .navbar {
   background-color: var(--background-color);
   box-shadow: none;
@@ -219,7 +223,8 @@ body {
     letter-spacing: 1px;
     margin-bottom: 1rem;
     color: var(--text-color);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: none;
+    // border-bottom: 1px solid var(--border-color);
     padding-bottom: 4px;
     display: block;
   }
