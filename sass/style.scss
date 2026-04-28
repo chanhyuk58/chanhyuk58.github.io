@@ -48,7 +48,7 @@ a {
   &:hover { color: var(--secondary-color); }
 }
 
-// --- NAVIGATION (No shadow, color bar logic) ---
+// --- NAVIGATION ---
 .navbar {
   background-color: var(--background-color);
   box-shadow: none;
@@ -197,6 +197,11 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+}
+
+.highlighted-author {
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .publication-card {

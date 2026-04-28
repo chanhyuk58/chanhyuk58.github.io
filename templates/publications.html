@@ -37,7 +37,9 @@
                         
                         <div class="publication-authors">
                             {% for author in pub.author %}         
-                                <span class="author">{{ author }}</span>{% if not loop.last %}, {% endif %}
+                                <span class="author {% if author == 'Chan-hyuk Park' %}highlighted-author{% endif %}">
+                                    {{ author }}
+                                </span>{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </div>
                     </header>
