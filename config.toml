@@ -8,9 +8,15 @@ compile_sass = true
 title = "Chanhyuk Park"
 # description = "Professional Portfolio"
 
+[markdown]
+# This prevents Zola from messing with your LaTeX math
+render_emoji = true
+highlight_code = true
+
 [extra]
 # Put all your custom variables here
 # The URL of the CV, which can be downloaded from the landing page
+math = true
 cv_url = "/cv.pdf"
 # Personal information
 name = "Chanhyuk Park"
