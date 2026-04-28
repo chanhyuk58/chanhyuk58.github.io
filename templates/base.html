@@ -82,7 +82,10 @@
                 <!-- Navigation links -->
                 <ul class="nav-menu" id="nav-menu">
                     <li class="nav-item">
-                        <a href="/" class="nav-link home-icon"><i class="fas fa-home"></i></a>
+                        {% set home_url = get_url(path="/") %}
+                        <a href="{{ home_url }}" class="nav-link {% if current_url == home_url %}active{% endif %}">
+                            <i class="fas fa-home"></i>
+                        </a>
                     </li>
                     {% if config.extra.menu %}
                     {% for item in config.extra.menu %}
@@ -155,5 +158,17 @@
         </script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         {% endif %}
+
+        <!-- Invisible SVG for Squircle/iPhone Curves -->
+        <svg width="0" height="0" style="position: absolute;">
+            <defs>
+            <clipPath id="squircleClip" clipPathUnits="objectBoundingBox">
+            <path d="M 0,0.5 
+                     C 0,0.1 0.1,0 0.5,0 
+                     S 1,0.1 1,0.5 0.9,1 0.5,1 0,0.9 0,0.5">
+            </path>
+            </clipPath>
+            </defs>
+        </svg>
     </body>
 </html> 

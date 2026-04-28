@@ -86,23 +86,27 @@ a {
   color: var(--text-color);
   font-weight: 500;
   font-size: 0.95rem;
-  height: 100%;
-  padding: 0 1.5rem;
+  padding: 0 1rem;      // Space on sides of the text
+  height: 70px;         // Match navbar height
   display: flex;
   align-items: center;
+  position: relative;   // Needed for the bar positioning
   transition: all 0.2s ease;
-  border-bottom: 3px solid transparent;
 
-  &:hover { color: var(--primary-color); }
-
-  &.active {
+  &:hover {
     color: var(--primary-color);
-    border-bottom: 3px solid var(--secondary-color); // The color bar
   }
 
-  &.home-icon {
-    border-bottom: 3px solid transparent !important;
-    font-size: 1.1rem;
+  // Colored under bar
+  &.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--secondary-color); 
+    transition: all 0.2s ease;
   }
 }
 
@@ -129,12 +133,22 @@ a {
   gap: 2.5rem;
 }
 
-.avatar-apple {
+/* Wrapper provides the shadow for the clipped image */
+.avatar-wrapper {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
+  position: relative;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
+.avatar-apple {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  display: block;
+  
+  /* Apply the invisible SVG cookie-cutter */
+  clip-path: url(#squircleClip);
 }
 
 .cell-links {
