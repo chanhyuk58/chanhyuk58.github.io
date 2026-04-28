@@ -24,11 +24,10 @@ I study methodology, recently focusing on coupling machine learning (specificall
 """
 
 # navbar items
-# [[extra.menu]]
-# name = "CV"
-# url = "/static/cv.pdf"
-# weight = 1
-
+[[extra.menu]]
+name = "CV"
+url = "/cv.pdf"
+weight = 1
 
 # [[extra.menu]]
 # name = "Publications"
