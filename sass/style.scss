@@ -37,7 +37,7 @@ body {
 
 // --- NAVIGATION ---
 .navbar {
-  background-color: var(--card-background);
+  background-color: var(--background-color);
   box-shadow: none;
   border-bottom: none;
   position: sticky;
@@ -59,7 +59,7 @@ body {
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 0;
+  gap: 1rem;
   height: 100%;
   align-items: center;
 }
@@ -74,28 +74,28 @@ body {
   color: var(--text-color);
   font-weight: 500;
   font-size: 0.95rem;
-  height: 100%;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
+  padding: 0.5rem 0.5rem;
+  position: relative;
   transition: all 0.2s ease;
-  border-bottom: 3px solid transparent;
 
   &:hover {
     color: var(--primary-color);
-    background-color: rgba(0,0,0,0.02);
   }
 
-  // The color bar for the selected menu
-  &.active {
-    color: var(--primary-color);
-    border-bottom: 3px solid var(--secondary-color);
+  &.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
   }
 
   // Home icon (no bar)
-  &.home-icon {
-    border-bottom: 3px solid transparent !important;
-    font-size: 1.1rem;
+  &.home-icon::after {
+    display: none !important;
   }
 }
 
