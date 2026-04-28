@@ -9,9 +9,12 @@ title = "Chanhyuk Park"
 # description = "Professional Portfolio"
 
 [markdown]
-# This prevents Zola from messing with your LaTeX math
 render_emoji = true
-highlight_code = true
+smart_punctuation = true
+
+[markdown.highlighting]
+enabled = true
+theme = "github-light"
 
 [extra]
 # Put all your custom variables here

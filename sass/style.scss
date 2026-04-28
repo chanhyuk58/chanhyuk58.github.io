@@ -283,3 +283,10 @@ a {
 // News date and read more
 .news-date { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
 .read-more { color: var(--primary-color); font-weight: 600; }
+
+/* Make long equations scrollable on mobile */
+.MathJax {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
