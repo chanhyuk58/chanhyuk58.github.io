@@ -1,20 +1,15 @@
 // --- VARIABLES & ROOT ---
 :root {
-  // Shadow and Depth
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
-  // Typography
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --heading-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  
-  // Layout Constants
   --max-width: 1100px;
+  --content-width: 800px; // For research/blog reading
   --sidebar-width: 260px;
-  --radius: 58px; // The "Apple iPhone" look for 260px width
+  --radius: 60px;
 }
 
-// Dark Mode Support
 .dark-mode {
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   --hover-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
@@ -35,15 +30,28 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-// --- NAVIGATION ---
-header, .header {
-    border-bottom: none !important;
-    box-shadow: none !important;
+// --- TYPOGRAPHY ---
+h1, h2, h3, h4 {
+  font-family: var(--heading-font);
+  color: var(--text-color);
+  line-height: 1.2;
 }
+
+h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+h2 { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--secondary-color); }
+h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover { color: var(--secondary-color); }
+}
+
+// --- NAVIGATION (No shadow, color bar logic) ---
 .navbar {
   background-color: var(--background-color);
   box-shadow: none;
-  border-bottom: none;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -63,7 +71,7 @@ header, .header {
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 1rem;
+  gap: 0; 
   height: 100%;
   align-items: center;
 }
@@ -78,35 +86,30 @@ header, .header {
   color: var(--text-color);
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 0.5rem 0.5rem;
-  position: relative;
+  height: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
   transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
 
-  &:hover {
+  &:hover { color: var(--primary-color); }
+
+  &.active {
     color: var(--primary-color);
+    border-bottom: 3px solid var(--secondary-color); // The color bar
   }
 
-  &.active::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0.5rem;
-    right: 0.5rem;
-    height: 3px;
-    background-color: var(--secondary-color);
-    border-radius: 2px;
-  }
-
-  // Home icon (no bar)
-  &.home-icon::after {
-    display: none !important;
+  &.home-icon {
+    border-bottom: 3px solid transparent !important;
+    font-size: 1.1rem;
   }
 }
 
-// --- MAIN 4-CELL LAYOUT ---
+// --- HOME PAGE: 4-CELL HERO LAYOUT ---
 .hero-layout {
   display: flex;
-  gap: 4rem; // Space between Column 1 and Column 2
+  gap: 4rem;
   padding: 4rem 0;
   align-items: flex-start;
 
@@ -118,15 +121,14 @@ header, .header {
   }
 }
 
-// COLUMN 1 (Sidebar - 260px)
+// Column 1 (Left: Pic & Links)
 .column-left {
   flex: 0 0 var(--sidebar-width);
   display: flex;
   flex-direction: column;
-  gap: 2.5rem; // Space between Cell 1 and Cell 2
+  gap: 2.5rem;
 }
 
-// CELL 1: Profile Pic
 .avatar-apple {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
@@ -135,7 +137,6 @@ header, .header {
   box-shadow: var(--shadow);
 }
 
-// CELL 2: Links & Social
 .cell-links {
   display: flex;
   flex-direction: column;
@@ -143,113 +144,122 @@ header, .header {
   align-items: center;
 }
 
-.cv-download {
-  width: 100%;
-}
-
 .social-links-sidebar {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
-  
   a {
     color: var(--text-color);
     font-size: 1.6rem;
-    transition: color 0.2s, transform 0.2s;
-    &:hover {
-      color: var(--primary-color);
-      transform: scale(1.1);
-    }
+    &:hover { color: var(--primary-color); transform: scale(1.1); }
   }
 }
 
-// COLUMN 2 (Content - Flexible)
+// Column 2 (Right: Bio & Info)
 .column-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem; // Space between Cell 3 and Cell 4
+  gap: 3.5rem;
 }
 
-// CELL 3: Bio Section
 .cell-bio {
-  .name {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-  }
-  
-  .role {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: var(--secondary-color);
-    margin-bottom: 0.2rem;
-  }
-  
-  .institute {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-
-  .bio-text {
-    text-align: justify;
-    p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 1.2rem;
-    }
-  }
+  .name { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; }
+  .role { font-size: 1.5rem; color: var(--secondary-color); font-weight: 500; }
+  .institute { font-size: 1.2rem; opacity: 0.8; margin-bottom: 1.5rem; }
+  .bio-text { text-align: justify; font-size: 1.05rem; }
 }
 
-// CELL 4: Info Grid (Interests & Education)
 .info-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
+  @media (max-width: 600px) { grid-template-columns: 1fr; }
 }
 
-.info-block {
-  h3 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-    border-bottom: none;
-    // border-bottom: 1px solid var(--border-color);
-    padding-bottom: 4px;
-    display: block;
-  }
+.info-block h3 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
 }
 
-// --- COMPONENTS ---
 .clean-list {
   list-style: none;
+  li { margin-bottom: 0.8rem; font-size: 0.95rem; }
+  .inst-sub { font-size: 0.85rem; color: var(--accent-color); display: block; }
+}
+
+// --- PUBLICATIONS ---
+.publication-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.publication-card {
+  background-color: var(--card-background);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
   
-  li {
-    margin-bottom: 0.8rem;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    
-    strong {
-      color: var(--text-color);
-    }
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--hover-shadow);
+  }
+  
+  h4 { margin-bottom: 1rem; color: var(--text-color); }
+  .publication-meta { color: var(--primary-color); font-size: 0.9rem; margin-bottom: 1rem; font-weight: 500; }
+  .publication-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+}
+
+.link-btn {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--border-color);
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  &:hover { background-color: var(--primary-color); color: white; }
+}
+
+// --- RESEARCH & SECTIONS ---
+.research-section {
+  padding: 4rem 0;
+  .research-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; }
   }
 }
 
-.inst-sub {
+.talk-item, .news-item {
+  padding: 1.5rem;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+  &:hover { transform: translateY(-2px); box-shadow: var(--hover-shadow); }
+}
+
+// --- FOOTER & UTILS ---
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
   font-size: 0.85rem;
   color: var(--accent-color);
-  display: block;
-  margin-top: 2px;
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .btn-primary {
@@ -259,38 +269,12 @@ header, .header {
   gap: 0.5rem;
   background-color: var(--primary-color);
   color: white;
-  padding: 0.8rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: var(--hover-shadow);
-  }
+  &:hover { background-color: var(--accent-color); transform: translateY(-2px); box-shadow: var(--hover-shadow); }
 }
 
-// --- FOOTER ---
-.footer {
-  padding: 3rem 0;
-  text-align: center;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.85rem;
-  color: var(--accent-color);
-  margin-top: 4rem;
-  
-  a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
-  }
-}
-
-// --- UTILITIES ---
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 2rem;
-}
+// News date and read more
+.news-date { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
+.read-more { color: var(--primary-color); font-weight: 600; }
