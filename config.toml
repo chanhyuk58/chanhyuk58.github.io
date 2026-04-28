@@ -24,15 +24,15 @@ I study methodology, recently focusing on coupling machine learning (specificall
 """
 
 # navbar items
-# [[extra.menu]]
-# name = "CV"
-# url = "/cv.pdf"
-# weight = 1
-
 [[extra.menu]]
-name = "Publications"
-url = "/publications/"
-weight = 1
+name = "Blogs"
+url = "/blogs/"
+weight = 4
+
+# [[extra.menu]]
+# name = "Publications"
+# url = "/publications/"
+# weight = 1
 
 # [[extra.menu]]
 # name = "Conferences & Talks"
