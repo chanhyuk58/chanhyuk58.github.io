@@ -31,7 +31,7 @@ I study methodology, recently focusing on coupling machine learning (specificall
 
 [[extra.menu]]
 name = "Publications"
-url = "/publications/"
+url = "/publications"
 weight = 1
 
 # [[extra.menu]]
