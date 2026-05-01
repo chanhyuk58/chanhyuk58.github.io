@@ -7,7 +7,7 @@
   --max-width: 1100px;
   --content-width: 800px; // For research/blog reading
   --sidebar-width: 260px;
-  --radius: 60px;
+  --radius: 52px;
 }
 
 .dark-mode {
@@ -137,8 +137,13 @@ a {
 .avatar-wrapper {
   width: var(--sidebar-width);
   height: var(--sidebar-width);
-  position: relative;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  /* This shadow follows the SVG shape perfectly */
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.1));
+  
+  @media (max-width: 850px) {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .avatar-apple {
@@ -147,8 +152,9 @@ a {
   object-fit: cover;
   display: block;
   
-  /* Apply the invisible SVG cookie-cutter */
-  clip-path: url(#squircleClip);
+  /* Apply the SVG mask */
+  clip-path: url(#iphoneMask);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .cell-links {
@@ -208,7 +214,7 @@ a {
 // --- PUBLICATIONS ---
 .publication-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -278,7 +284,9 @@ a {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem; /* Sufficient horizontal padding for mobile */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .btn-primary {
